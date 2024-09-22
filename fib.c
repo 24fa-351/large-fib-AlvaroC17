@@ -1,16 +1,19 @@
-// This was code was done last week I just procrastinated accepting the github... 
+// // This was code was done last week I just procrastinated accepting the github... 
+// NVM no file reading! 
 
 #include <stdio.h>
 #include <stdlib.h>
 
 // Recursive Fibonacci 
 unsigned long long fib_recursive(int n) {
+    if (n == 0) return 0;
     if (n == 1 || n == 2) return 1;
     return fib_recursive(n - 1) + fib_recursive(n - 2);
 }
 
 // Iterative Fibonacci 
 unsigned long long fib_iterative(int n) {
+    if (n == 0) return 0;
     if (n == 1 || n == 2) return 1;
     unsigned long long prev = 1, current = 1, next;
     for (int i = 3; i <= n; i++) {
@@ -22,28 +25,13 @@ unsigned long long fib_iterative(int n) {
 }
 
 int main(int argc, char *argv[]) {
-    if (argc != 4) {
-        printf("Use: %s <integer> <r|i> <filename>\n", argv[0]);
+    if (argc != 3) {
+        printf("Usage: %s <integer> <r|i>\n", argv[0]);
         return 1;
     }
 
     // Convert first argument to an integer
-    int input_num = atoi(argv[1]);
-
-    // Open file
-    FILE *file = fopen(argv[3], "r");
-    if (file == NULL) {
-        perror("Error opening file");
-        return 1;
-    }
-
-    // Read integer from file
-    int file_num;
-    fscanf(file, "%d", &file_num);
-    fclose(file);
-
-    // Calculate N = input_num + file_num
-    int N = input_num + file_num;
+    int N = atoi(argv[1]);
 
     // Determine Fibonacci number
     unsigned long long result;
@@ -57,7 +45,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Output the result 
-    printf("%lld\n", result);
+    printf("%llu\n", result);
 
     return 0;
 }
